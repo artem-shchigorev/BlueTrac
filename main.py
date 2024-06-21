@@ -16,6 +16,9 @@ tracLeft = pygame.image.load("images\\trac-left.png")
 tracRight = pygame.image.load("images\\trac-right.png")
 tracUp = pygame.image.load("images\\trac-up.png")
 tracDown = pygame.image.load("images\\trac-down.png")
+fieldImage = pygame.image.load("images\\field_image.png")
+plowedFieldImage = pygame.image.load("images\\plowed.png")
+rockImage = pygame.image.load("images\\rock.png")
 
 bear = pygame.image.load("images\\bear.jpg")  # Загружаем и масштабируем картинку медведя
 bearImage = pygame.transform.scale(bear, (40, 40))
@@ -108,13 +111,13 @@ while running:
                     pointsScored += 1
                     break
 
-        pygame.draw.rect(screen, (174, 123, 48), plowed_field)  # отрисовка вспаханного поля
+        screen.blit(plowedFieldImage, (200, 200))  # отрисовка вспаханного поля
 
         for i in range(0, len(fieldList)):
             pygame.draw.rect(screen, YELLOW, fieldList[i])  # Рисуем невспаханные поля
-
+            screen.blit(fieldImage, (fieldList[i].x, fieldList[i].y))
         for i in range(0, len(rockList)):
-            pygame.draw.rect(screen, GRAY, rockList[i])  # Рисуем камни
+            screen.blit(rockImage, (rockList[i].x, rockList[i].y))
             if tracObject.colliderect(rockList[i]):
                 statusTrac = False
 
